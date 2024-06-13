@@ -35,6 +35,11 @@ class DefaultController extends Controller
 
         return $response->json();
     } 
+    private function mercedes($limit) {
+        $response = Http::get('https://yl5.tak21umber.itmajakas.ee/api/mercedes?limit=' . $limit);
+
+        return $response->json();
+    } 
 
     public function index() {
         
@@ -53,8 +58,9 @@ class DefaultController extends Controller
         } else if (request()->get('whatapi') == 'cars'){
             $response = $this->cars($limit);
         } else if (request()->get('whatapi') == 'bmw'){
-            $response = $this->bmw($limit);                         
-        
+            $response = $this->bmw($limit); 
+        } else if (request()->get('whatapi') == 'mercedes'){
+            $response = $this->mercedes($limit);                          
         } else {
             $response = response()->json('vali api palun', 400);
         }
