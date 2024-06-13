@@ -30,6 +30,12 @@ class DefaultController extends Controller
         return $response->json();
     } 
 
+    private function bmw($limit) {
+        $response = Http::get('https://yl5.tak21karp.itmajakas.ee/api/bmw?limit=' . $limit);
+
+        return $response->json();
+    } 
+
     public function index() {
         
         $limit = request()->get('limit') ?? '';
@@ -45,7 +51,9 @@ class DefaultController extends Controller
         } else if (request()->get('whatapi') == 'song'){
             $response = $this->song($limit); 
         } else if (request()->get('whatapi') == 'cars'){
-            $response = $this->cars($limit);                        
+            $response = $this->cars($limit);
+        } else if (request()->get('whatapi') == 'bmw'){
+            $response = $this->bmw($limit);                         
         
         } else {
             $response = response()->json('vali api palun', 400);

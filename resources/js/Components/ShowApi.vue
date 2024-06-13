@@ -4,7 +4,8 @@
             <div class="flex gap-2 justify-center items-center">
                     <select name="" v-model="whatapi" id="">
                         <option value="">Select api</option>
-                        <option value="cars">Autod - Minu</option>
+                        <option value="bmw">bmw</option>
+                        <option value="cars">Auto</option>
                         <option value="lurescape">Kalad</option>
                         <option value="mannicoon">Mätlik</option>
                         <option value="song">Spotify</option>
@@ -19,6 +20,24 @@
                 </div>
             <div class="grid grid-cols-3 gap-24 items-center py-24">
 
+
+                <div
+                    v-if="whatapi == 'bmw'"
+                    v-for="data in apiData"
+                    :key="data.id"
+                >
+                    <div>
+                        <div class="w-24 h-24">
+                            <img :src="data?.image_url" :alt="data?.name" />
+                        </div>
+                        <div>
+                            <h1>{{ data?.title }}</h1>
+                            <p>{{ data?.description }}</p>
+                            <p>{{ data?.mudel }}</p>
+                            <p>{{ data?.engine }}</p>
+                        </div>
+                    </div>
+                </div>
 
             <div
                     v-if="whatapi == 'cars'"
